@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  mfHost: 'http://localhost:4201',
 };
 
 /*

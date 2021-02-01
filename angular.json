@@ -39,7 +39,7 @@
       "prefix": "angular-federation",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/apps/host",
             "index": "apps/host/src/index.html",
@@ -47,9 +47,15 @@
             "polyfills": "apps/host/src/polyfills.ts",
             "tsConfig": "apps/host/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/host/src/favicon.ico", "apps/host/src/assets"],
-            "styles": ["apps/host/src/styles.less"],
-            "scripts": []
+            "assets": [
+              "apps/host/src/favicon.ico",
+              "apps/host/src/assets"
+            ],
+            "styles": [
+              "apps/host/src/styles.less"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/host/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -77,18 +83,22 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "apps/host/webpack.prod.config.js"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "host:build"
+            "browserTarget": "host:build",
+            "extraWebpackConfig": "apps/host/webpack.config.js",
+            "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "host:build:production"
+              "browserTarget": "host:build:production",
+              "extraWebpackConfig": "apps/host/webpack.prod.config.js"
             }
           }
         },
@@ -109,7 +119,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/host"],
+          "outputs": [
+            "coverage/apps/host"
+          ],
           "options": {
             "jestConfig": "apps/host/jest.config.js",
             "passWithNoTests": true
@@ -138,7 +150,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps\\host-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps\\host-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -160,7 +174,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared"],
+          "outputs": [
+            "coverage/libs/shared"
+          ],
           "options": {
             "jestConfig": "libs/shared/jest.config.js",
             "passWithNoTests": true
@@ -175,7 +191,7 @@
       "prefix": "angular-federation",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/apps/shared-mf",
             "index": "apps/shared-mf/src/index.html",
@@ -187,8 +203,11 @@
               "apps/shared-mf/src/favicon.ico",
               "apps/shared-mf/src/assets"
             ],
-            "styles": ["apps/shared-mf/src/styles.less"],
-            "scripts": []
+            "styles": [
+              "apps/shared-mf/src/styles.less"
+            ],
+            "scripts": [],
+            "extraWebpackConfig": "apps/shared-mf/webpack.config.js"
           },
           "configurations": {
             "production": {
@@ -216,18 +235,22 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "extraWebpackConfig": "apps/shared-mf/webpack.prod.config.js"
             }
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "shared-mf:build"
+            "browserTarget": "shared-mf:build",
+            "extraWebpackConfig": "apps/shared-mf/webpack.config.js",
+            "port": 4201
           },
           "configurations": {
             "production": {
-              "browserTarget": "shared-mf:build:production"
+              "browserTarget": "shared-mf:build:production",
+              "extraWebpackConfig": "apps/shared-mf/webpack.prod.config.js"
             }
           }
         },
@@ -238,7 +261,7 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "lintFilePatterns": [
               "apps/shared-mf/src/**/*.ts",
@@ -248,7 +271,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/shared-mf"],
+          "outputs": [
+            "coverage/apps/shared-mf"
+          ],
           "options": {
             "jestConfig": "apps/shared-mf/jest.config.js",
             "passWithNoTests": true
@@ -277,7 +302,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps\\shared-mf-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps\\shared-mf-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

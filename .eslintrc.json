@@ -28,6 +28,15 @@
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nrwl/nx/javascript"],
       "rules": {}
+    },
+    {
+      "files": ["jest.config.js", "webpack.config.js", "webpack.prod.config.js"],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-var-requires": false
+      }
     }
   ]
 }

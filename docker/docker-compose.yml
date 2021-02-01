@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  host:
+    restart: always
+    build:
+      context: ..
+      dockerfile: ./docker/host.dockerfile
+    ports:
+      - 4200:80
+    networks:
+      - mf
+    depends_on:
+      - shared-mf
+  shared-mf:
+    restart: always
+    build:
+      context: ..
+      dockerfile: ./docker/shared-mf.dockerfile
+    ports:
+      - 4201:80
+    networks:
+      - mf
+networks:
+  mf:
+    driver: bridge
