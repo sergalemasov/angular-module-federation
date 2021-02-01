@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'angular-federation',
+  displayName: 'shared-mf',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../coverage/apps/angular-federation',
+  coverageDirectory: '../../coverage/apps/shared-mf',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

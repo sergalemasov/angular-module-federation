@@ -16,10 +16,10 @@
     }
   },
   "projects": {
-    "angular-federation": { "tags": [] },
-    "angular-federation-e2e": {
-      "tags": [],
-      "implicitDependencies": ["angular-federation"]
-    }
+    "host": { "tags": [] },
+    "host-e2e": { "tags": [], "implicitDependencies": ["host"] },
+    "shared": { "tags": [] },
+    "shared-mf": { "tags": [] },
+    "shared-mf-e2e": { "tags": [], "implicitDependencies": ["shared-mf"] }
   }
 }

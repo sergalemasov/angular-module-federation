@@ -14,10 +14,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-federation'`, () => {
+  it(`should have as title 'shared-mf'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-federation');
+    expect(app.title).toEqual('shared-mf');
   });
 
   it('should render title', () => {
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to angular-federation!'
+      'Welcome to shared-mf!'
     );
   });
 });

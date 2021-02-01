@@ -30,36 +30,33 @@
       "style": "less"
     }
   },
-  "defaultProject": "angular-federation",
+  "defaultProject": "host",
   "projects": {
-    "angular-federation": {
+    "host": {
       "projectType": "application",
-      "root": "apps/angular-federation",
-      "sourceRoot": "apps/angular-federation/src",
+      "root": "apps/host",
+      "sourceRoot": "apps/host/src",
       "prefix": "angular-federation",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/angular-federation",
-            "index": "apps/angular-federation/src/index.html",
-            "main": "apps/angular-federation/src/main.ts",
-            "polyfills": "apps/angular-federation/src/polyfills.ts",
-            "tsConfig": "apps/angular-federation/tsconfig.app.json",
+            "outputPath": "dist/apps/host",
+            "index": "apps/host/src/index.html",
+            "main": "apps/host/src/main.ts",
+            "polyfills": "apps/host/src/polyfills.ts",
+            "tsConfig": "apps/host/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/angular-federation/src/favicon.ico",
-              "apps/angular-federation/src/assets"
-            ],
-            "styles": ["apps/angular-federation/src/styles.less"],
+            "assets": ["apps/host/src/favicon.ico", "apps/host/src/assets"],
+            "styles": ["apps/host/src/styles.less"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/angular-federation/src/environments/environment.ts",
-                  "with": "apps/angular-federation/src/environments/environment.prod.ts"
+                  "replace": "apps/host/src/environments/environment.ts",
+                  "with": "apps/host/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -87,61 +84,200 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-federation:build"
+            "browserTarget": "host:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-federation:build:production"
+              "browserTarget": "host:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-federation:build"
+            "browserTarget": "host:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/angular-federation/src/**/*.ts",
-              "apps/angular-federation/src/**/*.html"
+              "apps/host/src/**/*.ts",
+              "apps/host/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/angular-federation"],
+          "outputs": ["coverage/apps/host"],
           "options": {
-            "jestConfig": "apps/angular-federation/jest.config.js",
+            "jestConfig": "apps/host/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "angular-federation-e2e": {
-      "root": "apps\\angular-federation-e2e",
-      "sourceRoot": "apps/angular-federation-e2e/src",
+    "host-e2e": {
+      "root": "apps\\host-e2e",
+      "sourceRoot": "apps/host-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/angular-federation-e2e/cypress.json",
-            "tsConfig": "apps/angular-federation-e2e/tsconfig.e2e.json",
-            "devServerTarget": "angular-federation:serve"
+            "cypressConfig": "apps/host-e2e/cypress.json",
+            "tsConfig": "apps/host-e2e/tsconfig.e2e.json",
+            "devServerTarget": "host:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-federation:serve:production"
+              "devServerTarget": "host:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps\\angular-federation-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps\\host-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "angular-federation",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared"],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-mf": {
+      "projectType": "application",
+      "root": "apps/shared-mf",
+      "sourceRoot": "apps/shared-mf/src",
+      "prefix": "angular-federation",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/shared-mf",
+            "index": "apps/shared-mf/src/index.html",
+            "main": "apps/shared-mf/src/main.ts",
+            "polyfills": "apps/shared-mf/src/polyfills.ts",
+            "tsConfig": "apps/shared-mf/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/shared-mf/src/favicon.ico",
+              "apps/shared-mf/src/assets"
+            ],
+            "styles": ["apps/shared-mf/src/styles.less"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/shared-mf/src/environments/environment.ts",
+                  "with": "apps/shared-mf/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "shared-mf:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shared-mf:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shared-mf:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/shared-mf/src/**/*.ts",
+              "apps/shared-mf/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/shared-mf"],
+          "options": {
+            "jestConfig": "apps/shared-mf/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-mf-e2e": {
+      "root": "apps\\shared-mf-e2e",
+      "sourceRoot": "apps/shared-mf-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/shared-mf-e2e/cypress.json",
+            "tsConfig": "apps/shared-mf-e2e/tsconfig.e2e.json",
+            "devServerTarget": "shared-mf:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shared-mf:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps\\shared-mf-e2e/**/*.{js,ts}"]
           }
         }
       }
